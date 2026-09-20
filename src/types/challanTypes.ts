@@ -17,6 +17,7 @@ export interface Challan {
   challanStatus: ChallanStatus;
 
   companyName: string;
+  companyTagline?: string;
   companyTelephone?: string;
   companyEmail?: string;
   companyAddress: string;
@@ -53,6 +54,7 @@ export interface TransformedChallanItem extends ChallanItem {
 export interface TransformedChallan {
   company: {
     name: string;
+    tagline: string;
     telephone: string;
     email: string;
     address: string;

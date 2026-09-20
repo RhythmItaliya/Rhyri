@@ -16,11 +16,13 @@ const challanCopyHeight = "138.5mm";
 const cropLineHeight = "6mm";
 
 const defaultFieldNames = {
+  companyTagline: "ALL TYPES OF COMPUTERIZED EMBROIDERY JOB WORK",
   contactTel: "Telephone",
   contactEmail: "Email",
   gstin: "GSTIN",
   customerDetails: "Customer Details",
   customerName: "M/s",
+  customerAddress: "Address",
   customerTel: "Telephone",
   customerEmail: "Email",
   challanNo: "Challan No",
@@ -85,6 +87,30 @@ const borderedCell = {
 const formatNumber = (value: number | string | undefined, digits = 2) =>
   toChallanNumber(value).toFixed(digits);
 
+const buildAddress = (parts: Array<string | undefined>) =>
+  parts
+    .map((part) => (part || "").trim())
+    .filter((part) => part !== "" && part !== "-")
+    .join(", ");
+
+// Compact the product rows as the item count grows so the full list always fits
+// inside the fixed-height challan copy without overflowing (or being truncated).
+const getItemRowLayout = (count: number) => {
+  if (count <= 6)
+    return { fontSize: "8px", padding: "1mm 1.5mm", lineHeight: 1.35 };
+  if (count <= 9)
+    return { fontSize: "7px", padding: "0.6mm 1.2mm", lineHeight: 1.2 };
+  if (count <= 12)
+    return { fontSize: "6.5px", padding: "0.5mm 1mm", lineHeight: 1.15 };
+  if (count <= 16)
+    return { fontSize: "6px", padding: "0.4mm 0.9mm", lineHeight: 1.1 };
+  if (count <= 22)
+    return { fontSize: "5.5px", padding: "0.3mm 0.8mm", lineHeight: 1.05 };
+  if (count <= 30)
+    return { fontSize: "5px", padding: "0.25mm 0.7mm", lineHeight: 1 };
+  return { fontSize: "4.5px", padding: "0.2mm 0.6mm", lineHeight: 1 };
+};
+
 function InfoTable({
   title,
   rows,
@@ -137,8 +163,27 @@ function ChallanCopy({
     totalQuantity,
     amount,
   } = data;
-  const visibleItems = items.slice(0, 7);
-  const itemFontSize = items.length > 6 ? "7px" : "8px";
+  const itemLayout = getItemRowLayout(items.length);
+  const clientAddress =
+    buildAddress([
+      client.address,
+      client.city,
+      client.state,
+      client.postCode,
+      client.country,
+    ]) || "-";
+  const itemCell = {
+    ...tableCell,
+    padding: itemLayout.padding,
+    fontSize: itemLayout.fontSize,
+    lineHeight: itemLayout.lineHeight,
+  } as const;
+  const itemBorderedCell = {
+    ...borderedCell,
+    padding: itemLayout.padding,
+    fontSize: itemLayout.fontSize,
+    lineHeight: itemLayout.lineHeight,
+  } as const;
 
   return (
     <section
@@ -170,6 +215,23 @@ function ChallanCopy({
       >
         {company.name}
       </h1>
+
+      {company.tagline || fieldNames.companyTagline ? (
+        <h2
+          style={{
+            fontSize: "9px",
+            padding: "1mm 2mm",
+            fontWeight: 700,
+            textTransform: "uppercase",
+            color: "#1f2937",
+            borderBottom: "1px solid black",
+            textAlign: "center",
+            margin: 0,
+          }}
+        >
+          {company.tagline || fieldNames.companyTagline}
+        </h2>
+      ) : null}
 
       <h2
         style={{
@@ -289,6 +351,7 @@ function ChallanCopy({
             title={fieldNames.customerDetails}
             rows={[
               [fieldNames.customerName, client.name],
+              [fieldNames.customerAddress, clientAddress],
               [fieldNames.gstin, client.gstNumber],
               [fieldNames.customerTel, client.telephone],
               [fieldNames.customerEmail, client.email],
@@ -359,7 +422,9 @@ function ChallanCopy({
                   style={{
                     ...tableCell,
                     width,
-                    fontSize: itemFontSize,
+                    padding: itemLayout.padding,
+                    fontSize: itemLayout.fontSize,
+                    lineHeight: itemLayout.lineHeight,
                     fontWeight: 800,
                     textAlign: align as "left" | "center",
                     borderLeft: index === 0 ? undefined : "1px solid black",
@@ -371,75 +436,31 @@ function ChallanCopy({
             </tr>
           </thead>
           <tbody>
-            {visibleItems.map((item, index) => (
+            {items.map((item, index) => (
               <tr
                 key={`${item.description}-${index}`}
                 style={{ height: "1px" }}
               >
-                <td
-                  style={{
-                    ...tableCell,
-                    fontSize: itemFontSize,
-                    textAlign: "center",
-                  }}
-                >
+                <td style={{ ...itemCell, textAlign: "center" }}>
                   {index + 1}
                 </td>
-                <td style={{ ...borderedCell, fontSize: itemFontSize }}>
-                  {item.description}
-                </td>
-                <td
-                  style={{
-                    ...borderedCell,
-                    fontSize: itemFontSize,
-                    textAlign: "center",
-                  }}
-                >
+                <td style={itemBorderedCell}>{item.description}</td>
+                <td style={{ ...itemBorderedCell, textAlign: "center" }}>
                   {item.designNumber || "-"}
                 </td>
-                <td
-                  style={{
-                    ...borderedCell,
-                    fontSize: itemFontSize,
-                    textAlign: "center",
-                  }}
-                >
+                <td style={{ ...itemBorderedCell, textAlign: "center" }}>
                   {item.size || "-"}
                 </td>
-                <td
-                  style={{
-                    ...borderedCell,
-                    fontSize: itemFontSize,
-                    textAlign: "center",
-                  }}
-                >
+                <td style={{ ...itemBorderedCell, textAlign: "center" }}>
                   {formatNumber(item.pieces, 0)}
                 </td>
-                <td
-                  style={{
-                    ...borderedCell,
-                    fontSize: itemFontSize,
-                    textAlign: "center",
-                  }}
-                >
+                <td style={{ ...itemBorderedCell, textAlign: "center" }}>
                   {formatNumber(item.quantity, 2)}
                 </td>
-                <td
-                  style={{
-                    ...borderedCell,
-                    fontSize: itemFontSize,
-                    textAlign: "center",
-                  }}
-                >
+                <td style={{ ...itemBorderedCell, textAlign: "center" }}>
                   {formatCurrency(item.rate)}
                 </td>
-                <td
-                  style={{
-                    ...borderedCell,
-                    fontSize: itemFontSize,
-                    textAlign: "center",
-                  }}
-                >
+                <td style={{ ...itemBorderedCell, textAlign: "center" }}>
                   {formatCurrency(item.amount)}
                 </td>
               </tr>

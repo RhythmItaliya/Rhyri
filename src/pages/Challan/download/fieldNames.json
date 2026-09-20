@@ -1,9 +1,11 @@
 {
+  "companyTagline": "ALL TYPES OF COMPUTERIZED EMBROIDERY JOB WORK",
   "contactTel": "Telephone",
   "contactEmail": "Email",
   "gstin": "GSTIN",
   "customerDetails": "Customer Details",
   "customerName": "M/s",
+  "customerAddress": "Address",
   "customerTel": "Telephone",
   "customerEmail": "Email",
   "challanNo": "Challan No",

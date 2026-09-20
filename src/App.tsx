@@ -55,6 +55,10 @@ const AdminPage = React.lazy(() =>
   import("./pages/Admin").then((module) => ({ default: module.AdminPage })),
 );
 
+const BackupPage = React.lazy(() =>
+  import("./pages/Backup").then((module) => ({ default: module.BackupPage })),
+);
+
 // Create Page
 const CreateInvoicePage = React.lazy(() =>
   import("./pages/Invoice/new").then((module) => ({
@@ -179,6 +183,7 @@ export default function App() {
         <Route path="/clients" element={<ClientsPage />} />
         <Route path="/companies" element={<CompaniesPage />} />
         <Route path="/banks" element={<BanksPage />} />
+        <Route path="/backup" element={<BackupPage />} />
       </Route>
 
       <Route element={<AdminRoute />}>

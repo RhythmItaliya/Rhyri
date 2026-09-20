@@ -2,6 +2,36 @@ import React from "react";
 import { FormatTestProps } from "../../../types/invoiceTypes";
 import { formatCurrency } from "../../../lib/utils";
 
+const buildAddress = (parts: Array<string | undefined>) =>
+  parts
+    .map((part) => (part || "").trim())
+    .filter((part) => part !== "" && part !== "-")
+    .join(", ");
+
+// Compact the product rows as the item count grows so the full list always fits
+// the page without overflowing. Existing sizes (<=20 items) are unchanged.
+const invoiceItemFontSize = (count: number) =>
+  count > 45
+    ? "7px"
+    : count > 30
+      ? "8px"
+      : count > 20
+        ? "9px"
+        : count > 13
+          ? "10px"
+          : "12px";
+
+const invoiceItemPadding = (count: number) =>
+  count > 45
+    ? "1px 3px"
+    : count > 30
+      ? "1px 4px"
+      : count > 20
+        ? "2px 4px"
+        : count > 13
+          ? "3px 4px"
+          : "4px";
+
 const FormatTest: React.FC<FormatTestProps> = ({ data, fieldNames }) => {
   const {
     company,
@@ -13,6 +43,16 @@ const FormatTest: React.FC<FormatTestProps> = ({ data, fieldNames }) => {
     totalInWords,
     termsAndConditions,
   } = data;
+
+  const itemFontSize = invoiceItemFontSize(items.length);
+  const itemPadding = invoiceItemPadding(items.length);
+  const customerAddress =
+    buildAddress([
+      customer.clientAddress,
+      customer.clientCity,
+      customer.clientPostCode,
+      customer.clientCountry,
+    ]) || " - ";
 
   return (
     <div
@@ -278,6 +318,29 @@ const FormatTest: React.FC<FormatTestProps> = ({ data, fieldNames }) => {
                 <td
                   style={{
                     color: "#4b5563",
+                    padding: "4px",
+                    textAlign: "left",
+                    paddingLeft: "8px",
+                    textTransform: "uppercase",
+                  }}
+                >
+                  {fieldNames.customerAddress}
+                </td>
+                <td
+                  style={{
+                    textTransform: "uppercase",
+                    fontWeight: "600",
+                    textAlign: "right",
+                    paddingRight: "8px",
+                  }}
+                >
+                  {customerAddress}
+                </td>
+              </tr>
+              <tr>
+                <td
+                  style={{
+                    color: "#4b5563",
                     paddingLeft: "8px",
                     padding: "4px",
                     textAlign: "left",
@@ -482,8 +545,7 @@ const FormatTest: React.FC<FormatTestProps> = ({ data, fieldNames }) => {
           style={{
             width: "100%",
             height: "100%",
-            fontSize:
-              items.length > 20 ? "9px" : items.length > 13 ? "10px" : "12px",
+            fontSize: itemFontSize,
             color: "black",
             borderCollapse: "collapse",
             tableLayout: "fixed",
@@ -559,19 +621,9 @@ const FormatTest: React.FC<FormatTestProps> = ({ data, fieldNames }) => {
               <tr key={index} style={{ height: "1px" }}>
                 <td
                   style={{
-                    padding:
-                      items.length > 20
-                        ? "2px 4px"
-                        : items.length > 13
-                          ? "3px 4px"
-                          : "4px",
+                    padding: itemPadding,
                     textAlign: "center",
-                    fontSize:
-                      items.length > 20
-                        ? "9px"
-                        : items.length > 13
-                          ? "10px"
-                          : "12px",
+                    fontSize: itemFontSize,
                     verticalAlign: "top",
                   }}
                 >
@@ -579,19 +631,9 @@ const FormatTest: React.FC<FormatTestProps> = ({ data, fieldNames }) => {
                 </td>
                 <td
                   style={{
-                    padding:
-                      items.length > 20
-                        ? "2px 4px"
-                        : items.length > 13
-                          ? "3px 4px"
-                          : "4px",
+                    padding: itemPadding,
                     textAlign: "left",
-                    fontSize:
-                      items.length > 20
-                        ? "9px"
-                        : items.length > 13
-                          ? "10px"
-                          : "12px",
+                    fontSize: itemFontSize,
                     borderLeft: "1px solid black",
                     verticalAlign: "top",
                   }}
@@ -600,19 +642,9 @@ const FormatTest: React.FC<FormatTestProps> = ({ data, fieldNames }) => {
                 </td>
                 <td
                   style={{
-                    padding:
-                      items.length > 20
-                        ? "2px 4px"
-                        : items.length > 13
-                          ? "3px 4px"
-                          : "4px",
+                    padding: itemPadding,
                     textAlign: "center",
-                    fontSize:
-                      items.length > 20
-                        ? "9px"
-                        : items.length > 13
-                          ? "10px"
-                          : "12px",
+                    fontSize: itemFontSize,
                     borderLeft: "1px solid black",
                     verticalAlign: "top",
                   }}
@@ -621,19 +653,9 @@ const FormatTest: React.FC<FormatTestProps> = ({ data, fieldNames }) => {
                 </td>
                 <td
                   style={{
-                    padding:
-                      items.length > 20
-                        ? "2px 4px"
-                        : items.length > 13
-                          ? "3px 4px"
-                          : "4px",
+                    padding: itemPadding,
                     textAlign: "center",
-                    fontSize:
-                      items.length > 20
-                        ? "9px"
-                        : items.length > 13
-                          ? "10px"
-                          : "12px",
+                    fontSize: itemFontSize,
                     borderLeft: "1px solid black",
                     verticalAlign: "top",
                   }}
@@ -642,19 +664,9 @@ const FormatTest: React.FC<FormatTestProps> = ({ data, fieldNames }) => {
                 </td>
                 <td
                   style={{
-                    padding:
-                      items.length > 20
-                        ? "2px 4px"
-                        : items.length > 13
-                          ? "3px 4px"
-                          : "4px",
+                    padding: itemPadding,
                     textAlign: "center",
-                    fontSize:
-                      items.length > 20
-                        ? "9px"
-                        : items.length > 13
-                          ? "10px"
-                          : "12px",
+                    fontSize: itemFontSize,
                     borderLeft: "1px solid black",
                     verticalAlign: "top",
                   }}
@@ -663,19 +675,9 @@ const FormatTest: React.FC<FormatTestProps> = ({ data, fieldNames }) => {
                 </td>
                 <td
                   style={{
-                    padding:
-                      items.length > 20
-                        ? "2px 4px"
-                        : items.length > 13
-                          ? "3px 4px"
-                          : "4px",
+                    padding: itemPadding,
                     textAlign: "center",
-                    fontSize:
-                      items.length > 20
-                        ? "9px"
-                        : items.length > 13
-                          ? "10px"
-                          : "12px",
+                    fontSize: itemFontSize,
                     borderLeft: "1px solid black",
                     verticalAlign: "top",
                   }}

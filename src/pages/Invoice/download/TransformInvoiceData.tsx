@@ -124,6 +124,10 @@ export const transformInvoiceData = (data: InvoiceData): TransformedData => {
       clientGSTNumber: data.clientGSTNumber || " - ",
       clientTelephone: data.clientTelephone || " - ",
       clientEmail: data.clientEmail || " - ",
+      clientAddress: data.clientAddress || "",
+      clientCity: data.clientCity || "",
+      clientPostCode: data.clientPostCode || "",
+      clientCountry: data.clientCountry || "",
     },
     items: transformedItems,
     totals: {

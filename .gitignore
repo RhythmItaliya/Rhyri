@@ -70,3 +70,9 @@ coverage/
 Thumbs.db
 ehthumbs.db
 .vercel
+
+# graphify knowledge graph output (generated)
+graphify-out/
+
+# local PDF output / reference exports
+out/

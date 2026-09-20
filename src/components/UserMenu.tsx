@@ -1,3 +1,5 @@
+import { useNavigate } from "react-router-dom";
+
 import { useAuth } from "../contexts/AuthContext";
 
 import {
@@ -14,6 +16,7 @@ import { catchError } from "../lib/utils";
 
 export function UserMenu() {
   const { currentUser, signOutCurrentUser } = useAuth();
+  const navigate = useNavigate();
 
   const initial = currentUser?.displayName?.charAt(0) || "P";
 
@@ -46,6 +49,12 @@ export function UserMenu() {
         <DropdownMenuLabel className="text-muted">
           {currentUser?.email}
         </DropdownMenuLabel>
+
+        <DropdownMenuSeparator />
+
+        <DropdownMenuItem onSelect={() => navigate("/backup")}>
+          Backup &amp; Data
+        </DropdownMenuItem>
 
         <DropdownMenuSeparator />
 

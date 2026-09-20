@@ -25,11 +25,35 @@ const valueCell = {
   textTransform: "uppercase",
 } as const;
 
+// Compact the product rows as the item count grows so the full list always fits
+// the page without overflowing. Existing sizes (<=20 items) are unchanged.
 const tableFontSize = (itemsLength: number) =>
-  itemsLength > 20 ? "9px" : itemsLength > 13 ? "10px" : "12px";
+  itemsLength > 45
+    ? "7px"
+    : itemsLength > 30
+      ? "8px"
+      : itemsLength > 20
+        ? "9px"
+        : itemsLength > 13
+          ? "10px"
+          : "12px";
 
 const tablePadding = (itemsLength: number) =>
-  itemsLength > 20 ? "2px 4px" : itemsLength > 13 ? "3px 4px" : "4px";
+  itemsLength > 45
+    ? "1px 3px"
+    : itemsLength > 30
+      ? "1px 4px"
+      : itemsLength > 20
+        ? "2px 4px"
+        : itemsLength > 13
+          ? "3px 4px"
+          : "4px";
+
+const buildAddress = (parts: Array<string | undefined>) =>
+  parts
+    .map((part) => (part || "").trim())
+    .filter((part) => part !== "" && part !== "-")
+    .join(", ");
 
 const formatNumber = (value: number | string | undefined, digits = 2) =>
   toPurchaseBillNumber(value).toFixed(digits);
@@ -49,6 +73,14 @@ const PurchaseBillFormat: React.FC<PurchaseBillFormatProps> = ({ data }) => {
   const itemPadding = tablePadding(items.length);
   const documentCompany = buyer;
   const counterparty = supplier;
+  const counterpartyAddress =
+    buildAddress([
+      counterparty.address,
+      counterparty.city,
+      counterparty.state,
+      counterparty.postCode,
+      counterparty.country,
+    ]) || "-";
 
   return (
     <div
@@ -79,6 +111,23 @@ const PurchaseBillFormat: React.FC<PurchaseBillFormatProps> = ({ data }) => {
       >
         {documentCompany.name}
       </h1>
+
+      {fieldNames.companyTagline ? (
+        <h2
+          style={{
+            fontSize: "14px",
+            padding: "8px",
+            fontWeight: 700,
+            textTransform: "uppercase",
+            color: "#1f2937",
+            borderBottom: "1px solid black",
+            textAlign: "center",
+            margin: 0,
+          }}
+        >
+          {fieldNames.companyTagline}
+        </h2>
+      ) : null}
 
       <h2
         style={{
@@ -255,6 +304,10 @@ const PurchaseBillFormat: React.FC<PurchaseBillFormatProps> = ({ data }) => {
               <tr>
                 <td style={labelCell}>{fieldNames.customerName}</td>
                 <td style={valueCell}>{counterparty.name}</td>
+              </tr>
+              <tr>
+                <td style={labelCell}>{fieldNames.customerAddress}</td>
+                <td style={valueCell}>{counterpartyAddress}</td>
               </tr>
               <tr>
                 <td style={labelCell}>{fieldNames.gstin}</td>

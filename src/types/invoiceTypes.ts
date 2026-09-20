@@ -23,6 +23,10 @@ export interface InvoiceData {
   clientGSTNumber?: string;
   clientTelephone?: string;
   clientEmail?: string;
+  clientAddress?: string;
+  clientCity?: string;
+  clientPostCode?: string;
+  clientCountry?: string;
 
   itemList?: InvoiceItem[];
   amount?: number;
@@ -73,6 +77,10 @@ export interface Customer {
   clientGSTNumber?: string;
   clientTelephone: string;
   clientEmail: string;
+  clientAddress?: string;
+  clientCity?: string;
+  clientPostCode?: string;
+  clientCountry?: string;
 }
 
 export interface Invoice {
@@ -142,6 +150,7 @@ export interface FieldNames {
   originalForReceipt: string;
   customerDetails: string;
   customerName: string;
+  customerAddress: string;
   customerTel: string;
   customerEmail: string;
   invoiceDetails: string;

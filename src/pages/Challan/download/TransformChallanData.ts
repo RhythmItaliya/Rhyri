@@ -24,6 +24,7 @@ export function transformChallanData(data: Challan): TransformedChallan {
   return {
     company: {
       name: data.companyName || "-",
+      tagline: data.companyTagline || "",
       telephone: data.companyTelephone || "-",
       email: data.companyEmail || "-",
       address: data.companyAddress || "-",
