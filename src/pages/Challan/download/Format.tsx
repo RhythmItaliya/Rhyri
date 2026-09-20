@@ -331,7 +331,7 @@ function ChallanCopy({
       </div>
 
       <div style={{ display: "flex" }}>
-        <div style={{ flex: 1, borderBottom: "1px solid black" }}>
+        <div style={{ flex: "0 0 38%", borderBottom: "1px solid black" }}>
           <InfoTable
             title={fieldNames.customerDetails}
             rows={[
@@ -344,7 +344,7 @@ function ChallanCopy({
         </div>
         <div
           style={{
-            flex: 1,
+            flex: "0 0 34%",
             borderBottom: "1px solid black",
             borderLeft: "1px solid black",
           }}
@@ -361,7 +361,7 @@ function ChallanCopy({
         </div>
         <div
           style={{
-            flex: 1.6,
+            flex: "0 0 28%",
             borderBottom: "1px solid black",
             borderLeft: "1px solid black",
           }}

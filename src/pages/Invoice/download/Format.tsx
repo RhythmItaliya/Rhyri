@@ -271,7 +271,7 @@ const FormatTest: React.FC<FormatTestProps> = ({ data, fieldNames }) => {
 
       <div style={{ display: "flex" }}>
         {/* Customer Details Section */}
-        <div style={{ flex: 1, borderBottom: "1px solid black" }}>
+        <div style={{ flex: "0 0 38%", borderBottom: "1px solid black" }}>
           <table style={{ width: "100%", fontSize: "12px" }}>
             <thead>
               <tr>
@@ -390,7 +390,7 @@ const FormatTest: React.FC<FormatTestProps> = ({ data, fieldNames }) => {
         {/* Invoice Details Section */}
         <div
           style={{
-            flex: 1,
+            flex: "0 0 34%",
             borderBottom: "1px solid black",
             borderLeft: "1px solid black",
           }}
@@ -490,7 +490,7 @@ const FormatTest: React.FC<FormatTestProps> = ({ data, fieldNames }) => {
         {/* Customer Address Section */}
         <div
           style={{
-            flex: 1.6,
+            flex: "0 0 28%",
             borderBottom: "1px solid black",
             borderLeft: "1px solid black",
           }}
