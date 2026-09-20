@@ -278,12 +278,12 @@ const FormatTest: React.FC<FormatTestProps> = ({ data, fieldNames }) => {
                 <th
                   colSpan={2}
                   style={{
-                    fontSize: "14px",
+                    fontSize: "11px",
                     textAlign: "center",
                     borderBottom: "1px solid black",
                     color: "#4b5563",
-                    paddingTop: "8px",
-                    paddingBottom: "8px",
+                    paddingTop: "3px",
+                    paddingBottom: "3px",
                   }}
                 >
                   {fieldNames.customerDetails}
@@ -387,49 +387,6 @@ const FormatTest: React.FC<FormatTestProps> = ({ data, fieldNames }) => {
           </table>
         </div>
 
-        {/* Customer Address Section */}
-        <div
-          style={{
-            flex: 1,
-            borderBottom: "1px solid black",
-            borderLeft: "1px solid black",
-          }}
-        >
-          <table style={{ width: "100%", fontSize: "12px" }}>
-            <thead>
-              <tr>
-                <th
-                  style={{
-                    fontSize: "14px",
-                    textAlign: "center",
-                    borderBottom: "1px solid black",
-                    color: "#4b5563",
-                    paddingTop: "8px",
-                    paddingBottom: "8px",
-                  }}
-                >
-                  {fieldNames.customerAddress}
-                </th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td
-                  style={{
-                    padding: "4px 8px",
-                    textTransform: "uppercase",
-                    fontWeight: "600",
-                    textAlign: "left",
-                    verticalAlign: "top",
-                  }}
-                >
-                  {customerAddress}
-                </td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
-
         {/* Invoice Details Section */}
         <div
           style={{
@@ -444,12 +401,12 @@ const FormatTest: React.FC<FormatTestProps> = ({ data, fieldNames }) => {
                 <th
                   colSpan={2}
                   style={{
-                    fontSize: "14px",
+                    fontSize: "11px",
                     textAlign: "center",
                     borderBottom: "1px solid black",
                     color: "#4b5563",
-                    paddingTop: "8px",
-                    paddingBottom: "8px",
+                    paddingTop: "3px",
+                    paddingBottom: "3px",
                   }}
                 >
                   {fieldNames.invoiceDetails}
@@ -529,6 +486,49 @@ const FormatTest: React.FC<FormatTestProps> = ({ data, fieldNames }) => {
             </tbody>
           </table>
         </div>
+
+        {/* Customer Address Section */}
+        <div
+          style={{
+            flex: 1.6,
+            borderBottom: "1px solid black",
+            borderLeft: "1px solid black",
+          }}
+        >
+          <table style={{ width: "100%", fontSize: "12px" }}>
+            <thead>
+              <tr>
+                <th
+                  style={{
+                    fontSize: "11px",
+                    textAlign: "center",
+                    borderBottom: "1px solid black",
+                    color: "#4b5563",
+                    paddingTop: "3px",
+                    paddingBottom: "3px",
+                  }}
+                >
+                  Customer Address
+                </th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td
+                  style={{
+                    padding: "4px 8px",
+                    textTransform: "uppercase",
+                    fontWeight: "600",
+                    textAlign: "left",
+                    verticalAlign: "top",
+                  }}
+                >
+                  {customerAddress}
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
       </div>
 
       {/* Product Details Section */}
@@ -538,12 +538,12 @@ const FormatTest: React.FC<FormatTestProps> = ({ data, fieldNames }) => {
             <tr>
               <th
                 style={{
-                  fontSize: "14px",
+                  fontSize: "11px",
                   textAlign: "center",
                   borderBottom: "1px solid black",
                   color: "#4b5563",
-                  paddingTop: "8px",
-                  paddingBottom: "8px",
+                  paddingTop: "3px",
+                  paddingBottom: "3px",
                 }}
               >
                 {fieldNames.productDetails}
@@ -579,14 +579,14 @@ const FormatTest: React.FC<FormatTestProps> = ({ data, fieldNames }) => {
               }}
             >
               <th
-                style={{ textAlign: "center", padding: "8px 0", width: "5%" }}
+                style={{ textAlign: "center", padding: "3px 0", width: "5%" }}
               >
                 {fieldNames.srNo}
               </th>
               <th
                 style={{
                   textAlign: "left",
-                  padding: "8px 4px",
+                  padding: "3px 4px",
                   width: "45%",
                   borderLeft: "1px solid black",
                 }}
@@ -596,7 +596,7 @@ const FormatTest: React.FC<FormatTestProps> = ({ data, fieldNames }) => {
               <th
                 style={{
                   textAlign: "center",
-                  padding: "8px 0",
+                  padding: "3px 0",
                   width: "10%",
                   borderLeft: "1px solid black",
                 }}
@@ -606,7 +606,7 @@ const FormatTest: React.FC<FormatTestProps> = ({ data, fieldNames }) => {
               <th
                 style={{
                   textAlign: "center",
-                  padding: "8px 0",
+                  padding: "3px 0",
                   width: "13%",
                   borderLeft: "1px solid black",
                 }}
@@ -616,7 +616,7 @@ const FormatTest: React.FC<FormatTestProps> = ({ data, fieldNames }) => {
               <th
                 style={{
                   textAlign: "center",
-                  padding: "8px 0",
+                  padding: "3px 0",
                   width: "13%",
                   borderLeft: "1px solid black",
                 }}
@@ -626,7 +626,7 @@ const FormatTest: React.FC<FormatTestProps> = ({ data, fieldNames }) => {
               <th
                 style={{
                   textAlign: "center",
-                  padding: "8px 0",
+                  padding: "3px 0",
                   width: "14%",
                   borderLeft: "1px solid black",
                 }}

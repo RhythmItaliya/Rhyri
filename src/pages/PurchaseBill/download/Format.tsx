@@ -288,12 +288,12 @@ const PurchaseBillFormat: React.FC<PurchaseBillFormatProps> = ({ data }) => {
                 <th
                   colSpan={2}
                   style={{
-                    fontSize: "14px",
+                    fontSize: "11px",
                     textAlign: "center",
                     borderBottom: "1px solid black",
                     color: "#4b5563",
-                    paddingTop: "8px",
-                    paddingBottom: "8px",
+                    paddingTop: "3px",
+                    paddingBottom: "3px",
                   }}
                 >
                   {fieldNames.supplierDetails}
@@ -340,12 +340,12 @@ const PurchaseBillFormat: React.FC<PurchaseBillFormatProps> = ({ data }) => {
                 <th
                   colSpan={2}
                   style={{
-                    fontSize: "14px",
+                    fontSize: "11px",
                     textAlign: "center",
                     borderBottom: "1px solid black",
                     color: "#4b5563",
-                    paddingTop: "8px",
-                    paddingBottom: "8px",
+                    paddingTop: "3px",
+                    paddingBottom: "3px",
                   }}
                 >
                   {fieldNames.purchaseBillDetails}
@@ -380,12 +380,12 @@ const PurchaseBillFormat: React.FC<PurchaseBillFormatProps> = ({ data }) => {
             <tr>
               <th
                 style={{
-                  fontSize: "14px",
+                  fontSize: "11px",
                   textAlign: "center",
                   borderBottom: "1px solid black",
                   color: "#4b5563",
-                  paddingTop: "8px",
-                  paddingBottom: "8px",
+                  paddingTop: "3px",
+                  paddingBottom: "3px",
                 }}
               >
                 {fieldNames.productDetails}
@@ -426,7 +426,7 @@ const PurchaseBillFormat: React.FC<PurchaseBillFormatProps> = ({ data }) => {
                   style={{
                     width,
                     textAlign: align as "left" | "center",
-                    padding: "8px 4px",
+                    padding: "3px 4px",
                     borderLeft: index === 0 ? undefined : "1px solid black",
                   }}
                 >

@@ -128,7 +128,7 @@ function InfoTable({
             colSpan={2}
             style={{
               color: muted,
-              padding: "1.5mm",
+              padding: "0.8mm",
               borderBottom: "1px solid black",
               textAlign: "center",
               textTransform: "uppercase",
@@ -349,6 +349,23 @@ function ChallanCopy({
             borderLeft: "1px solid black",
           }}
         >
+          <InfoTable
+            title={fieldNames.challanDetails}
+            rows={[
+              [fieldNames.challanNo, challan.number],
+              [fieldNames.date, challan.date],
+              [fieldNames.poNo, challan.poNumber],
+              [fieldNames.orderDate, challan.orderDate],
+            ]}
+          />
+        </div>
+        <div
+          style={{
+            flex: 1.6,
+            borderBottom: "1px solid black",
+            borderLeft: "1px solid black",
+          }}
+        >
           <table
             style={{
               width: "100%",
@@ -361,13 +378,13 @@ function ChallanCopy({
                 <th
                   style={{
                     color: muted,
-                    padding: "1.5mm",
+                    padding: "0.8mm",
                     borderBottom: "1px solid black",
                     textAlign: "center",
                     textTransform: "uppercase",
                   }}
                 >
-                  {fieldNames.customerAddress}
+                  Customer Address
                 </th>
               </tr>
             </thead>
@@ -386,30 +403,13 @@ function ChallanCopy({
             </tbody>
           </table>
         </div>
-        <div
-          style={{
-            flex: 1,
-            borderBottom: "1px solid black",
-            borderLeft: "1px solid black",
-          }}
-        >
-          <InfoTable
-            title={fieldNames.challanDetails}
-            rows={[
-              [fieldNames.challanNo, challan.number],
-              [fieldNames.date, challan.date],
-              [fieldNames.poNo, challan.poNumber],
-              [fieldNames.orderDate, challan.orderDate],
-            ]}
-          />
-        </div>
       </div>
 
       <p
         style={{
           ...compactText,
           color: muted,
-          padding: "1.5mm",
+          padding: "0.8mm",
           textAlign: "center",
           borderBottom: "1px solid black",
           fontWeight: 700,
