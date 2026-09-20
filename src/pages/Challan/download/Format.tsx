@@ -233,21 +233,6 @@ function ChallanCopy({
         </h2>
       ) : null}
 
-      <h2
-        style={{
-          fontSize: "8px",
-          padding: "1.5mm 2mm",
-          fontWeight: 700,
-          textTransform: "uppercase",
-          color: "#1f2937",
-          borderBottom: "1px solid black",
-          textAlign: "center",
-          margin: 0,
-        }}
-      >
-        {company.address}, {company.city}, {company.state}
-      </h2>
-
       <div style={{ display: "flex", borderBottom: "1px solid black" }}>
         <div
           style={{
@@ -346,12 +331,11 @@ function ChallanCopy({
       </div>
 
       <div style={{ display: "flex" }}>
-        <div style={{ width: "50%", borderBottom: "1px solid black" }}>
+        <div style={{ flex: 1, borderBottom: "1px solid black" }}>
           <InfoTable
             title={fieldNames.customerDetails}
             rows={[
               [fieldNames.customerName, client.name],
-              [fieldNames.customerAddress, clientAddress],
               [fieldNames.gstin, client.gstNumber],
               [fieldNames.customerTel, client.telephone],
               [fieldNames.customerEmail, client.email],
@@ -360,7 +344,51 @@ function ChallanCopy({
         </div>
         <div
           style={{
-            width: "50%",
+            flex: 1,
+            borderBottom: "1px solid black",
+            borderLeft: "1px solid black",
+          }}
+        >
+          <table
+            style={{
+              width: "100%",
+              fontSize: "8px",
+              borderCollapse: "collapse",
+            }}
+          >
+            <thead>
+              <tr>
+                <th
+                  style={{
+                    color: muted,
+                    padding: "1.5mm",
+                    borderBottom: "1px solid black",
+                    textAlign: "center",
+                    textTransform: "uppercase",
+                  }}
+                >
+                  {fieldNames.customerAddress}
+                </th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td
+                  style={{
+                    ...tableCell,
+                    fontWeight: 700,
+                    textTransform: "uppercase",
+                  }}
+                >
+                  {clientAddress}
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <div
+          style={{
+            flex: 1,
             borderBottom: "1px solid black",
             borderLeft: "1px solid black",
           }}

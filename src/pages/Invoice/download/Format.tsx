@@ -271,7 +271,7 @@ const FormatTest: React.FC<FormatTestProps> = ({ data, fieldNames }) => {
 
       <div style={{ display: "flex" }}>
         {/* Customer Details Section */}
-        <div style={{ width: "50%", borderBottom: "1px solid black" }}>
+        <div style={{ flex: 1, borderBottom: "1px solid black" }}>
           <table style={{ width: "100%", fontSize: "12px" }}>
             <thead>
               <tr>
@@ -312,29 +312,6 @@ const FormatTest: React.FC<FormatTestProps> = ({ data, fieldNames }) => {
                   }}
                 >
                   {customer.clientName}
-                </td>
-              </tr>
-              <tr>
-                <td
-                  style={{
-                    color: "#4b5563",
-                    padding: "4px",
-                    textAlign: "left",
-                    paddingLeft: "8px",
-                    textTransform: "uppercase",
-                  }}
-                >
-                  {fieldNames.customerAddress}
-                </td>
-                <td
-                  style={{
-                    textTransform: "uppercase",
-                    fontWeight: "600",
-                    textAlign: "right",
-                    paddingRight: "8px",
-                  }}
-                >
-                  {customerAddress}
                 </td>
               </tr>
               <tr>
@@ -410,10 +387,53 @@ const FormatTest: React.FC<FormatTestProps> = ({ data, fieldNames }) => {
           </table>
         </div>
 
+        {/* Customer Address Section */}
+        <div
+          style={{
+            flex: 1,
+            borderBottom: "1px solid black",
+            borderLeft: "1px solid black",
+          }}
+        >
+          <table style={{ width: "100%", fontSize: "12px" }}>
+            <thead>
+              <tr>
+                <th
+                  style={{
+                    fontSize: "14px",
+                    textAlign: "center",
+                    borderBottom: "1px solid black",
+                    color: "#4b5563",
+                    paddingTop: "8px",
+                    paddingBottom: "8px",
+                  }}
+                >
+                  {fieldNames.customerAddress}
+                </th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td
+                  style={{
+                    padding: "4px 8px",
+                    textTransform: "uppercase",
+                    fontWeight: "600",
+                    textAlign: "left",
+                    verticalAlign: "top",
+                  }}
+                >
+                  {customerAddress}
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
         {/* Invoice Details Section */}
         <div
           style={{
-            width: "50%",
+            flex: 1,
             borderBottom: "1px solid black",
             borderLeft: "1px solid black",
           }}
